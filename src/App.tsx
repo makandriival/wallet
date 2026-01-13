@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import TransactionsList from './components/TransactionsList';
-import TransactionDetail from './components/TransactionDetail';
+import { useState, useEffect } from 'react';
 import { WalletData, Transaction } from './types';
 import walletData from './data/transactions.json';
+import { TransactionDetail } from './components/TransactionDetail';
+import { TransactionsList } from './components/TransactionsList';
 
 function App() {
   const [data, setData] = useState<WalletData | null>(null);

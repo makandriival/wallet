@@ -6,7 +6,7 @@ interface Props {
     data: WalletData
 }
 
-const GeneralInfo: FC<Props> = ({data}) => {
+export const GeneralInfo: FC<Props> = ({data}) => {
     const today = new Date();
     const dailyPoints = calculateDailyPoints(today);
     const formattedPoints = formatPoints(dailyPoints);
@@ -41,5 +41,3 @@ const GeneralInfo: FC<Props> = ({data}) => {
           </div>
         </div>
 )}
-
-export default {GeneralInfo}

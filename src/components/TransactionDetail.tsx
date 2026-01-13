@@ -8,7 +8,7 @@ interface TransactionDetailProps {
   onBack: () => void;
 }
 
-const TransactionDetail: React.FC<TransactionDetailProps> = ({ transaction, onBack }) => {
+export const TransactionDetail: React.FC<TransactionDetailProps> = ({ transaction, onBack }) => {
   const { iconClass, bgColor, isBrand } = getIconForTransaction(transaction.name);
   const displayAmount = transaction.type === "Payment" 
     ? `+$${transaction.amount.toFixed(2)}`
@@ -108,5 +108,3 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({ transaction, onBa
     </div>
   );
 };
-
-export default TransactionDetail;
