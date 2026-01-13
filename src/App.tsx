@@ -1,25 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import TransactionsList from './components/TransactionsList';
+import TransactionDetail from './components/TransactionDetail';
+import { WalletData, Transaction } from './types';
+import walletData from './data/transactions.json';
 
 function App() {
+  const [data, setData] = useState<WalletData | null>(null);
+  const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
+
+  useEffect(() => {
+    // Load the JSON data
+    setData(walletData as WalletData);
+  }, []);
+
+  const handleTransactionClick = (transaction: Transaction) => {
+    setSelectedTransaction(transaction);
+  };
+
+  const handleBack = () => {
+    setSelectedTransaction(null);
+  };
+
+  if (!data) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-gray-600">Loading...</div>
+      </div>
+    );
+  }
+
+  if (selectedTransaction) {
+    return (
+      <TransactionDetail
+        transaction={selectedTransaction}
+        onBack={handleBack}
+      />
+    );
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TransactionsList
+      data={data}
+      onTransactionClick={handleTransactionClick}
+    />
   );
 }
 
