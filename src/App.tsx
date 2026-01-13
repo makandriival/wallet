@@ -9,7 +9,6 @@ function App() {
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
 
   useEffect(() => {
-    // Load the JSON data
     setData(walletData as WalletData);
   }, []);
 
